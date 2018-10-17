@@ -26,28 +26,40 @@
         }
         
         .bor_white {
-            height: 3.8rem;
-            width: 3.1rem;
+            height: 3.1rem;
+            width: 2.45rem;
             background: red;
             position: absolute;
-            top: 11.6rem;
-            left: 8.05rem;
+            top: 20.2rem;
+            left: 11.2rem;
         }
     </style>
 </head>
 
 <body>
     <div class="box">
-        <img src="./images/2.jpg" height="100%" width="100%" alt="">
+        <img src="./images/1.jpg" height="100%" width="100%" alt="">
     </div>
     <div id="time"></div>
     <div class="bor_white">
         <img id="one" src="" height="100%" width="100%" alt="">
     </div>
-    <div style="height:200px;"></div>
+    <div style="height:200px;border: 1px solid red;"></div>
+    <button id="shareBtn">12312</button>
+    <div style="height:200px;border: 1px solid red;"></div>
+
 </body>
 <script src="./scripts/moment.js"></script>
 <script src="http://www.jq22.com/jquery/2.1.1/jquery.min.js"></script>
+<script src="./scripts/soshm.min.js"></script>
+<script>
+    document.getElementById('shareBtn').addEventListener('click', function() {
+        soshm.popIn({
+            title: '弹窗分享',
+            sites: ['weixin', 'weixintimeline', 'weibo', 'yixin', 'qzone', 'tqq', 'qq']
+        });
+    }, false);
+</script>
 <script type="text/javascript">
     var str = window.location.href;
     var arr = str.split("=");

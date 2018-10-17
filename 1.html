@@ -18,6 +18,22 @@
             height: 13.3rem;
         }
         
+        .box2 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.8);
+            width: 100%;
+            height: 13.3rem;
+            display: none;
+        }
+        
+        .box2_img {
+            top: 0.3rem;
+            position: absolute;
+            right: 0;
+        }
+        
         #time {
             position: absolute;
             top: 9.3rem;
@@ -64,6 +80,11 @@
         <a class="play" href="./start.html"></a>
         <button id="shareBtn">btn</button>
     </div>
+    <div class="box2">
+        <div>
+            <img class="box2_img" src="./images/share.png" alt="">
+        </div>
+    </div>
     <div style="height:100px;"></div>
 </body>
 <script src="./scripts/moment.js"></script>
@@ -83,21 +104,21 @@
         doc.addEventListener('DOMContentLoaded', recalc, false);
     }(document, window));
     ///截取url地址
-    ////分享弹窗
-    document.getElementById('shareBtn').addEventListener('click', function() {
-        soshm.popIn({
-            title: '弹窗分享',
-            sites: ['weixin', 'weixintimeline', 'weibo', ]
-        });
-    }, false)
     var str = window.location.href;
     var arr = str.split("=");
     $("#one").attr("src", arr[1]);
     //// 当前时间
     setInterval(function() {
-        var now = moment().format('YYYY-MM-DD HH:mm:ss');
-        $('#time').html(now)
-    }, 1000)
+            var now = moment().format('YYYY-MM-DD HH:mm:ss');
+            $('#time').html(now)
+        }, 1000)
+        ////
+    $("#shareBtn").click(function() {
+        $(".box2").show();
+    });
+    $(".box2").click(function() {
+        $(".box2").hide();
+    });
 </script>
 
 </html>

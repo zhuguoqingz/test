@@ -27,11 +27,11 @@
         
         .bor_white {
             height: 3.1rem;
-            width: 2.45rem;
+            width: 2.7rem;
             background: red;
             position: absolute;
             top: 20.2rem;
-            left: 11.2rem;
+            left: 12.34rem;
         }
     </style>
 </head>
@@ -45,7 +45,7 @@
         <img id="one" src="" height="100%" width="100%" alt="">
     </div>
     <div style="height:200px;border: 1px solid red;"></div>
-    <button id="shareBtn">12312</button>
+    <button id="shareBtn">btn</button>
     <div style="height:200px;border: 1px solid red;"></div>
 
 </body>
@@ -56,10 +56,19 @@
     document.getElementById('shareBtn').addEventListener('click', function() {
         soshm.popIn({
             title: '弹窗分享',
-            sites: ['weixin', 'weixintimeline', 'weibo', 'yixin', 'qzone', 'tqq', 'qq']
+            sites: ['weixin', 'weixintimeline', 'weibo', ]
         });
     }, false);
 </script>
+
+
+
+
+
+
+
+
+<!-- ///////// -->
 <script type="text/javascript">
     var str = window.location.href;
     var arr = str.split("=");

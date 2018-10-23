@@ -84,7 +84,6 @@
             <img class="box2_img" src="./images/share.png" alt="">
         </div>
     </div>
-    <a class="dianwo" href="#">点我吧</a>
     <div style="height:100px;"></div>
 
 </body>
@@ -121,37 +120,37 @@
         $(".box2").hide();
     });
     ////
-    $(".dianwo").click(() => {
-        alert('1')
-        html2canvas(document.querySelector(".box")).then(canvas => {
-            alert('2')
-            var dataUrl = canvas.toDataURL();
-            var blob = dataURItoBlob(dataUrl); // 上一步中的函数
-            if (window.saveAs && false) {
-                console.log(1)
-                window.saveAs(blob, "万圣节.png");
-            } else {
-                console.log(2)
-                saveAs(blob, "万圣节.png");
-            }
-        });
-    })
+    // $(".save").click(() => {
+    //     alert('1')
+    //     html2canvas(document.querySelector(".box")).then(canvas => {
+    //         alert('2')
+    //         var dataUrl = canvas.toDataURL();
+    //         var blob = dataURItoBlob(dataUrl); // 上一步中的函数
+    //         if (window.saveAs && false) {
+    //             console.log(1)
+    //             window.saveAs(blob, "万圣节.png");
+    //         } else {
+    //             console.log(2)
+    //             saveAs(blob, "万圣节.png");
+    //         }
+    //     });
+    // })
 
-    function dataURItoBlob(dataURL) {
-        var byteString;
-        if (dataURL.split(',')[0].indexOf('base64') >= 0)
-            byteString = atob(dataURL.split(',')[1]);
-        else
-            byteString = unescape(dataURL.split(',')[1]);
-        var mimeString = dataURL.split(',')[0].split(':')[1].split(';')[0];
-        var ia = new Uint8Array(byteString.length);
-        for (var i = 0; i < byteString.length; i++) {
-            ia[i] = byteString.charCodeAt(i);
-        }
-        return new Blob([ia], {
-            type: mimeString
-        });
-    }
+    // function dataURItoBlob(dataURL) {
+    //     var byteString;
+    //     if (dataURL.split(',')[0].indexOf('base64') >= 0)
+    //         byteString = atob(dataURL.split(',')[1]);
+    //     else
+    //         byteString = unescape(dataURL.split(',')[1]);
+    //     var mimeString = dataURL.split(',')[0].split(':')[1].split(';')[0];
+    //     var ia = new Uint8Array(byteString.length);
+    //     for (var i = 0; i < byteString.length; i++) {
+    //         ia[i] = byteString.charCodeAt(i);
+    //     }
+    //     return new Blob([ia], {
+    //         type: mimeString
+    //     });
+    // }
 </script>
 
 </html>

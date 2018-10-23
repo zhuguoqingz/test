@@ -84,7 +84,9 @@
             <img class="box2_img" src="./images/share.png" alt="">
         </div>
     </div>
+    <a class="dianwo" href="#">点我吧</a>
     <div style="height:100px;"></div>
+
 </body>
 <script src="./scripts/moment.js"></script>
 <script src="https://cdn.bootcss.com/jquery/1.7.1/jquery.min.js"></script>
@@ -119,7 +121,7 @@
         $(".box2").hide();
     });
     ////
-    $("#save").click(() => {
+    $(".dianwo").click(() => {
         html2canvas(document.querySelector(".box")).then(canvas => {
             var dataUrl = canvas.toDataURL();
             var blob = dataURItoBlob(dataUrl); // 上一步中的函数

@@ -42,11 +42,10 @@
         }
         
         .bor_white {
-            height: 1rem;
+            height: 1.04rem;
             width: 0.78rem;
-            background: red;
             position: absolute;
-            top: 6.45rem;
+            top: 6.40rem;
             left: 3.58rem;
         }
         
@@ -104,9 +103,14 @@
         doc.addEventListener('DOMContentLoaded', recalc, false);
     }(document, window));
     ///截取url地址
-    var str = window.location.href;
-    var arr = str.split("=");
-    $("#one").attr("src", arr[1]);
+    // var str = window.location.href;
+    // var arr = str.split("=");
+    // console.log(arr[1])
+    // if (str.indexOf("ok")) {
+    //     window.location.href = './start.html';
+    // }
+    var one1 = window.sessionStorage.getItem('imgbing');
+    $("#one").attr("src", one1);
     //// 当前时间
     setInterval(function() {
             var now = moment().format('YYYY-MM-DD HH:mm:ss');

@@ -59,10 +59,40 @@
         }
         /* 选取 */
         
+        .hide_start {
+            display: none;
+            position: relative;
+        }
+        
+        .left_logo {
+            position: absolute;
+            top: 0;
+        }
+        
+        .head_top {
+            position: absolute;
+            top: 0;
+            height: 0.9rem;
+            width: 100%;
+            background: #303030;
+        }
+        
+        .one312 {
+            margin: auto;
+            position: relative;
+            top: 3.5rem;
+        }
+        
         #clipBtn {
-            font-size: 0.4rem;
-            text-align: center;
-            color: black;
+            /* position: absolute;
+            top: 0;
+            right: 0;
+            margin-right: 0.2rem; */
+            font-size: 0.3rem;
+            text-align: right;
+            margin-right: 0.1rem;
+            line-height: 0.8rem;
+            color: #2a7f3e;
         }
         /* 头像位置 */
         
@@ -86,11 +116,6 @@
             z-index: 3;
         }
         
-        .hide_start {
-            position: relative;
-            display: none;
-        }
-        
         #testbtn {
             height: 1rem;
             width: 2.5rem;
@@ -111,17 +136,20 @@
     <!-- 添加照片 -->
     <div class="Adding fileinput-button">
         <div>
-            <i><img src="./images/logo1.png"  alt="" srcset=""></i>
+            <i class="logo_left"><img src="./images/logo1.png"  alt="" srcset=""></i>
         </div>
         <input type="file" class="file">
     </div>
     <!-- 照片样式 -->
     <div class="hide_start">
-        <div class="">
+        <div class="one312">
             <div id="clipArea"></div>
         </div>
-        <!-- 选区照片 -->
-        <div>
+    </div>
+    <!-- 选区照片 -->
+    <div>
+        <div class="head_top">
+            <i><img class="left_logo" src="./images/left1.png" alt=""></i>
             <p id="clipBtn">选取</p>
         </div>
     </div>
@@ -139,6 +167,15 @@
 <script src="./scripts/lrz.all.bundle.js"></script>
 <script src="./scripts/jquery.photoClip.js"></script>
 <script>
+    // var str = window.location.href;
+    // var arr = str.split("=");
+    // if (arr[1] != 'ok') {
+    //     window.location.href = './start.html';
+    // }
+    var imgurl = '';
+    $(".left_logo").click(function() {
+        window.location.href = './photo.html';
+    });
     (function(doc, win) {
         var docEl = doc.documentElement;
         resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize';
@@ -166,6 +203,8 @@
             $(".hide_start").show();
             $("#view").hide();
             $(".box").hide();
+            $(".head_top").show();
+            $("body").css("background", "black");
         },
         loadComplete: function() {
             // console.log("照片读取完成");
@@ -176,8 +215,12 @@
             $(".hide_start").hide();
             $("#view").show();
             $(".add").show();
+            $(".head_top").hide();
+
             ////////
             function dataURItoBlob(dataURL) {
+                imgurl = dataURL;
+                debugger
                 var byteString;
                 if (dataURL.split(',')[0].indexOf('base64') >= 0)
                     byteString = atob(dataURL.split(',')[1]);
@@ -213,26 +256,11 @@
         }
     });
     $("#testbtn").click(function() {
-        if (imgName == '') {
-            alert('请上传照片')
-        } else {
-            $.ajax({
-                type: 'post',
-                url: 'http://m.uzhuang.com/index.php?m=halloween&f=index&v=showImgAndNum',
-                dataType: 'json',
-                data: {
-                    "imgName": imgName
-                },
-                success: function(data) {
-                    window.location.href = './' + data.data.num + '.html?imgUrl=' + data.data.imgUrl;
-
-                },
-                error: function() {
-                    console.log('123123');
-                }
-            })
-
-        }
+        window.sessionStorage.setItem('imgbing', imgurl);
+        window.location.href = './1.html';
+        // if (imgName == '') {
+        //     alert('请上传照片')
+        // } 
     });
 </script>
 

@@ -92,10 +92,6 @@
 <script src="./scripts/FileSaver.js"></script>
 <script src="./scripts/html2canvas.js"></script>
 <script type="text/javascript">
-    document.oncontextmenu = function(e) {
-        //或者return false;
-        e.preventDefault();
-    };
     (function(doc, win) {
         var docEl = doc.documentElement;
         resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize';
@@ -123,73 +119,35 @@
         $(".box2").hide();
     });
     ////
-
-    // $("#save").click(() => {
-    //     html2canvas(document.querySelector(".box")).then(canvas => {
-    //         var dataUrl = canvas.toDataURL();
-    //         var blob = dataURItoBlob(dataUrl); // 上一步中的函数
-    //         if (window.saveAs && false) {
-    //             console.log(1)
-    //             window.saveAs(blob, "万圣节.png");
-    //         } else {
-    //             console.log(2)
-    //             saveAs(blob, "万圣节.png");
-    //         }
-    //     });
-    // })
-
-    // function dataURItoBlob(dataURL) {
-    //     var byteString;
-    //     if (dataURL.split(',')[0].indexOf('base64') >= 0)
-    //         byteString = atob(dataURL.split(',')[1]);
-    //     else
-    //         byteString = unescape(dataURL.split(',')[1]);
-    //     var mimeString = dataURL.split(',')[0].split(':')[1].split(';')[0];
-    //     var ia = new Uint8Array(byteString.length);
-    //     for (var i = 0; i < byteString.length; i++) {
-    //         ia[i] = byteString.charCodeAt(i);
-    //     }
-    //     return new Blob([ia], {
-    //         type: mimeString
-    //     });
-    // }
-
-    $("#save").on({
-        touchstart: function(e) {
-            // 长按事件触发  
-            timeOutEvent = setTimeout(function() {
-                timeOutEvent = 0;
-                html2canvas(document.querySelector(".box")).then(canvas => {
-                    var dataUrl = canvas.toDataURL();
-                    var blob = dataURItoBlob(dataUrl); // 上一步中的函数
-                    if (window.saveAs && false) {
-                        console.log(1)
-                        window.saveAs(blob, "万圣节.png");
-                    } else {
-                        console.log(2)
-                        saveAs(blob, "万圣节.png");
-                    }
-                });
-                //
-                function dataURItoBlob(dataURL) {
-                    var byteString;
-                    if (dataURL.split(',')[0].indexOf('base64') >= 0)
-                        byteString = atob(dataURL.split(',')[1]);
-                    else
-                        byteString = unescape(dataURL.split(',')[1]);
-                    var mimeString = dataURL.split(',')[0].split(':')[1].split(';')[0];
-                    var ia = new Uint8Array(byteString.length);
-                    for (var i = 0; i < byteString.length; i++) {
-                        ia[i] = byteString.charCodeAt(i);
-                    }
-                    return new Blob([ia], {
-                        type: mimeString
-                    });
-                }
-            }, 2000);
-        },
-
+    $("#save").click(() => {
+        html2canvas(document.querySelector(".box")).then(canvas => {
+            var dataUrl = canvas.toDataURL();
+            var blob = dataURItoBlob(dataUrl); // 上一步中的函数
+            if (window.saveAs && false) {
+                console.log(1)
+                window.saveAs(blob, "万圣节.png");
+            } else {
+                console.log(2)
+                saveAs(blob, "万圣节.png");
+            }
+        });
     })
+
+    function dataURItoBlob(dataURL) {
+        var byteString;
+        if (dataURL.split(',')[0].indexOf('base64') >= 0)
+            byteString = atob(dataURL.split(',')[1]);
+        else
+            byteString = unescape(dataURL.split(',')[1]);
+        var mimeString = dataURL.split(',')[0].split(':')[1].split(';')[0];
+        var ia = new Uint8Array(byteString.length);
+        for (var i = 0; i < byteString.length; i++) {
+            ia[i] = byteString.charCodeAt(i);
+        }
+        return new Blob([ia], {
+            type: mimeString
+        });
+    }
 </script>
 
 </html>

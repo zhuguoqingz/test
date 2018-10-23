@@ -92,6 +92,10 @@
 <script src="./scripts/FileSaver.js"></script>
 <script src="./scripts/html2canvas.js"></script>
 <script type="text/javascript">
+    document.oncontextmenu = function(e) {
+        //或者return false;
+        e.preventDefault();
+    };
     (function(doc, win) {
         var docEl = doc.documentElement;
         resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize';
@@ -149,10 +153,7 @@
     //         type: mimeString
     //     });
     // }
-    document.oncontextmenu = function(e) {
-        //或者return false;
-        e.preventDefault();
-    };
+
     $("#save").on({
         touchstart: function(e) {
             // 长按事件触发  

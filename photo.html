@@ -238,9 +238,10 @@
             ///
             var blob = dataURItoBlob(dataURL); // 上一步中的函数
             var canvas = document.createElement('canvas');
-            var dataURL = canvas.toDataURL('image/jpeg', 0.5);
+            var type = blob.type.split("/")[1];
+            var dataURL = canvas.toDataURL(blob, type, 0.5);
             var fd = new FormData(document.forms[0]);
-            fd.append("file", blob, '1.png');
+            fd.append("file", blob, '1.${type}');
             ////
             $.ajax({
                 type: 'post',

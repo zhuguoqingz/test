@@ -104,9 +104,11 @@
         doc.addEventListener('DOMContentLoaded', recalc, false);
     }(document, window));
     ///截取url地址
-    var str = window.location.href;
-    var arr = str.split("=");
-    $("#one").attr("src", arr[1]);
+    // var str = window.location.href;
+    // var arr = str.split("=");
+    // $("#one").attr("src", arr[1]);
+    var one1 = window.sessionStorage.getItem('imgbing');
+    $("#one").attr("src", one1);
     //// 当前时间
     setInterval(function() {
         var now = moment().format('YYYY-MM-DD HH:mm:ss');

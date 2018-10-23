@@ -128,7 +128,7 @@
             var blob = dataURItoBlob(dataUrl);
             // 上一步中的函数
             alert(blob);
-            if (window.saveAs && false) {
+            if (window.saveAs) {
                 alert(2)
                 console.log(1)
                 window.saveAs(blob, "万圣节.png");

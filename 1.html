@@ -122,7 +122,9 @@
     });
     ////
     $(".dianwo").click(() => {
+        alert('1')
         html2canvas(document.querySelector(".box")).then(canvas => {
+            alert('2')
             var dataUrl = canvas.toDataURL();
             var blob = dataURItoBlob(dataUrl); // 上一步中的函数
             if (window.saveAs && false) {

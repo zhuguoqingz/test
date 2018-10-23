@@ -67,6 +67,15 @@
             opacity: 0;
             left: 4.5rem;
         }
+        
+        .o-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            z-index: 20;
+        }
     </style>
 </head>
 
@@ -123,38 +132,52 @@
         $(".box2").hide();
     });
     ////
-    $("#save").click(() => {
-        html2canvas(document.querySelector(".box")).then(canvas => {
-            alert(canvas)
-            var dataUrl = canvas.toDataURL();
-            var blob = dataURItoBlob(dataUrl);
-            // 上一步中的函数
-            alert(blob);
-            if (window.saveAs) {
-                alert(2)
-                window.saveAs(blob, "万圣节.png");
-            } else {
-                alert(1)
-                saveAs(blob, "万圣节.png");
-            }
-        });
-    })
 
-    function dataURItoBlob(dataURL) {
-        var byteString;
-        if (dataURL.split(',')[0].indexOf('base64') >= 0)
-            byteString = atob(dataURL.split(',')[1]);
-        else
-            byteString = unescape(dataURL.split(',')[1]);
-        var mimeString = dataURL.split(',')[0].split(':')[1].split(';')[0];
-        var ia = new Uint8Array(byteString.length);
-        for (var i = 0; i < byteString.length; i++) {
-            ia[i] = byteString.charCodeAt(i);
-        }
-        return new Blob([ia], {
-            type: mimeString
+    $(".#save").click(function() {
+        html2img({
+            targetEleId: oCanvas,
+            imgType: 'png',
+            titleStr: '描述语'
+        }, false).then((imgUrl) => {
+            let oImg = document.createElement('img');
+            oImg.id = 'oImg';
+            oImg.className = 'o-img';
+            oImg.src = imgUrl; //imgUrl是html2canvas返回的截图的base64码
+            document.body.appendChild(oImg); //将生成的截图放到页面中
         });
-    }
+    });
+    // $("#save").click(() => {
+    //     html2canvas(document.querySelector(".box")).then(canvas => {
+    //         alert(canvas)
+    //         var dataUrl = canvas.toDataURL();
+    //         var blob = dataURItoBlob(dataUrl);
+    //         // 上一步中的函数
+    //         alert(blob);
+    //         if (window.saveAs) {
+    //             alert(2)
+    //             window.saveAs(blob, "万圣节.png");
+    //         } else {
+    //             alert(1)
+    //             saveAs(blob, "万圣节.png");
+    //         }
+    //     });
+    // })
+
+    // function dataURItoBlob(dataURL) {
+    //     var byteString;
+    //     if (dataURL.split(',')[0].indexOf('base64') >= 0)
+    //         byteString = atob(dataURL.split(',')[1]);
+    //     else
+    //         byteString = unescape(dataURL.split(',')[1]);
+    //     var mimeString = dataURL.split(',')[0].split(':')[1].split(';')[0];
+    //     var ia = new Uint8Array(byteString.length);
+    //     for (var i = 0; i < byteString.length; i++) {
+    //         ia[i] = byteString.charCodeAt(i);
+    //     }
+    //     return new Blob([ia], {
+    //         type: mimeString
+    //     });
+    // }
 </script>
 
 </html>

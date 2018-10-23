@@ -149,7 +149,10 @@
     //         type: mimeString
     //     });
     // }
-
+    document.oncontextmenu = function(e) {
+        //或者return false;
+        e.preventDefault();
+    };
     $("#save").on({
         touchstart: function(e) {
             // 长按事件触发  

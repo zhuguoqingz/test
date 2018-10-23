@@ -122,15 +122,18 @@
     });
     ////
     $("#save").click(() => {
-        alert('1')
         html2canvas(document.querySelector(".box")).then(canvas => {
-            alert('2')
+            alert(canvas)
             var dataUrl = canvas.toDataURL();
-            var blob = dataURItoBlob(dataUrl); // 上一步中的函数
+            var blob = dataURItoBlob(dataUrl);
+            // 上一步中的函数
+            alert(blob);
             if (window.saveAs && false) {
+                alert(2)
                 console.log(1)
                 window.saveAs(blob, "万圣节.png");
             } else {
+                alert(1)
                 console.log(2)
                 saveAs(blob, "万圣节.png");
             }

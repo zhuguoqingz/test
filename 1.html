@@ -70,7 +70,7 @@
 </head>
 
 <body>
-    <div class="box">
+    <div class="box" id="save" click="save">
         <img src="./images/1.jpg" height="100%" width="100%" alt="">
         <div class="bor_white">
             <img id="one" src="" height="100%" width="100%" alt="">
@@ -89,6 +89,8 @@
 <script src="./scripts/moment.js"></script>
 <script src="https://cdn.bootcss.com/jquery/1.7.1/jquery.min.js"></script>
 <script src="./scripts/soshm.min.js"></script>
+<script src="./scripts/FileSaver.js"></script>
+<script src="./scripts/html2canvas.js"></script>
 <script type="text/javascript">
     (function(doc, win) {
         var docEl = doc.documentElement;
@@ -102,13 +104,6 @@
         win.addEventListener(resizeEvt, recalc, false);
         doc.addEventListener('DOMContentLoaded', recalc, false);
     }(document, window));
-    ///截取url地址
-    // var str = window.location.href;
-    // var arr = str.split("=");
-    // console.log(arr[1])
-    // if (str.indexOf("ok")) {
-    //     window.location.href = './start.html';
-    // }
     var one1 = window.sessionStorage.getItem('imgbing');
     $("#one").attr("src", one1);
     //// 当前时间
@@ -123,6 +118,74 @@
     $(".box2").click(function() {
         $(".box2").hide();
     });
+    ////
+
+    // $("#save").click(() => {
+    //     html2canvas(document.querySelector(".box")).then(canvas => {
+    //         var dataUrl = canvas.toDataURL();
+    //         var blob = dataURItoBlob(dataUrl); // 上一步中的函数
+    //         if (window.saveAs && false) {
+    //             console.log(1)
+    //             window.saveAs(blob, "万圣节.png");
+    //         } else {
+    //             console.log(2)
+    //             saveAs(blob, "万圣节.png");
+    //         }
+    //     });
+    // })
+
+    // function dataURItoBlob(dataURL) {
+    //     var byteString;
+    //     if (dataURL.split(',')[0].indexOf('base64') >= 0)
+    //         byteString = atob(dataURL.split(',')[1]);
+    //     else
+    //         byteString = unescape(dataURL.split(',')[1]);
+    //     var mimeString = dataURL.split(',')[0].split(':')[1].split(';')[0];
+    //     var ia = new Uint8Array(byteString.length);
+    //     for (var i = 0; i < byteString.length; i++) {
+    //         ia[i] = byteString.charCodeAt(i);
+    //     }
+    //     return new Blob([ia], {
+    //         type: mimeString
+    //     });
+    // }
+
+    $("#save").on({
+        touchstart: function(e) {
+            // 长按事件触发  
+            timeOutEvent = setTimeout(function() {
+                timeOutEvent = 0;
+                html2canvas(document.querySelector(".box")).then(canvas => {
+                    var dataUrl = canvas.toDataURL();
+                    var blob = dataURItoBlob(dataUrl); // 上一步中的函数
+                    if (window.saveAs && false) {
+                        console.log(1)
+                        window.saveAs(blob, "万圣节.png");
+                    } else {
+                        console.log(2)
+                        saveAs(blob, "万圣节.png");
+                    }
+                });
+                //
+                function dataURItoBlob(dataURL) {
+                    var byteString;
+                    if (dataURL.split(',')[0].indexOf('base64') >= 0)
+                        byteString = atob(dataURL.split(',')[1]);
+                    else
+                        byteString = unescape(dataURL.split(',')[1]);
+                    var mimeString = dataURL.split(',')[0].split(':')[1].split(';')[0];
+                    var ia = new Uint8Array(byteString.length);
+                    for (var i = 0; i < byteString.length; i++) {
+                        ia[i] = byteString.charCodeAt(i);
+                    }
+                    return new Blob([ia], {
+                        type: mimeString
+                    });
+                }
+            }, 2000);
+        },
+
+    })
 </script>
 
 </html>

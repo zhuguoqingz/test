@@ -95,8 +95,8 @@
         </div>
     </div>
     <button id="save" click="save">bt大苏打撒旦</button>
+    <canvas width="320" height="180" style="width:160px;height:90px;"></canvas><canvas width="320" height="180" style="width:160px;height:90px;"></canvas>
     <div style="height:100px;"></div>
-
 </body>
 <script src="./scripts/moment.js"></script>
 <script src="https://cdn.bootcss.com/jquery/1.7.1/jquery.min.js"></script>
@@ -133,19 +133,13 @@
     });
     ////
 
-    $(".#save").click(function() {
-        html2img({
-            targetEleId: oCanvas,
-            imgType: 'png',
-            titleStr: '描述语'
-        }, false).then((imgUrl) => {
-            let oImg = document.createElement('img');
-            oImg.id = 'oImg';
-            oImg.className = 'o-img';
-            oImg.src = imgUrl; //imgUrl是html2canvas返回的截图的base64码
-            document.body.appendChild(oImg); //将生成的截图放到页面中
-        });
+    html2canvas(document.body).then(function(canvas) {
+        document.body.appendChild(canvas);
     });
+
+
+
+
     // $("#save").click(() => {
     //     html2canvas(document.querySelector(".box")).then(canvas => {
     //         alert(canvas)
